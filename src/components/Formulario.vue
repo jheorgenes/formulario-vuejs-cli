@@ -8,25 +8,25 @@
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Nome:</label>
             <div class="col">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" v-model.lazy="form.nome" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">E-mail:</label>
             <div class="col">
-              <input type="email" class="form-control" />
+              <input type="email" class="form-control" v-model="form.email" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Senha:</label>
             <div class="col">
-              <input type="password" class="form-control" />
+              <input type="password" class="form-control" v-model.trim="form.senha" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Idade:</label>
             <div class="col">
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" v-model.number="form.idade" />
             </div>
           </div>
           <div class="mb-3 row">
@@ -154,22 +154,22 @@
         <span class="fs-4">ESTADO DO OBJETO</span>
         <hr />
         <div class="mb-5 row">
-          <spam>Estado do objeto</spam>
+          <spam>{{ form }}</spam>
         </div>
 
         <span class="fs-4">SAÍDA DE DADOS</span>
         <hr />
         <div class="mb-3 row">
-          <spam>Nome:</spam>
+          <spam>Nome: {{ form.nome }}</spam>
         </div>
         <div class="mb-3 row">
-          <spam>E-mail:</spam>
+          <spam>E-mail: {{ form.email }}</spam>
         </div>
         <div class="mb-3 row">
-          <spam>Senha:</spam>
+          <spam>Senha: {{ form.senha }}</spam>
         </div>
         <div class="mb-3 row">
-          <spam>Idade:</spam>
+          <spam>Idade: {{ form.idade }}</spam>
         </div>
         <div class="mb-3 row">
           <spam>Gênero:</spam>
@@ -218,5 +218,13 @@
 <script>
 export default {
   name: 'Formulario',
+  data: () => ({
+    form: {
+      nome: '',
+      email: '',
+      senha: '',
+      idade: ''
+    }
+  })
 };
 </script>
