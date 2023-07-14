@@ -110,33 +110,54 @@
             </div>
           </div>
           <div class="mb-3 row">
+            <label class="col-3 col-form-label">Placa de Veículo:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.placaVeiculo" v-maska="'AAA-#####'" />
+              <small class="text-muted">Formato: AAA-0000</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">Placa de Veículo Mercosul:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.placaVeiculoMercosul" v-maska="' AAA#A##'" />
+              <small class="text-muted">Formato: AAA0A00</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">RG:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.rg" v-maska="'#*-X'" />
+              <small class="text-muted">Formato: Sem padrão</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
             <label class="col-3 col-form-label">Data:</label>
             <div class="col">
-              <input type="date" class="form-control" />
+              <input type="date" class="form-control" v-model="form.data" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Data/hora local:</label>
             <div class="col">
-              <input type="datetime-local" class="form-control" />
+              <input type="datetime-local" class="form-control" v-model="form.dataHoraLocal" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Mês:</label>
             <div class="col">
-              <input type="month" class="form-control" />
+              <input type="month" class="form-control" v-model="form.mes" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Semana:</label>
             <div class="col">
-              <input type="week" class="form-control" />
+              <input type="week" class="form-control" v-model="form.semana" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Hora:</label>
             <div class="col">
-              <input type="time" class="form-control" />
+              <input type="time" class="form-control" v-model="form.hora" />
             </div>
           </div>
           <div class="mb-3 row">
@@ -227,19 +248,28 @@
           <span>Cartão de Crédito: {{ form.cartaoDeCredito }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Data:</span>
+          <span>Placa de Veículo: {{ form.placaVeiculo }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Data/hora local:</span>
+          <span>Placa de Veículo Mercosul: {{ form.placaVeiculoMercosul}}</span>
         </div>
         <div class="mb-3 row">
-          <span>Mês:</span>
+          <span>RG: {{ form.rg }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Semana:</span>
+          <span>Data: {{ form.data }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Hora:</span>
+          <span>Data/hora local: {{ form.dataHoraLocal }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>Mês: {{ form.mes }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>Semana: {{ form.semana }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>Hora: {{ form.hora }}</span>
         </div>
         <div class="mb-3 row">
           <span>Cor:</span>
@@ -274,7 +304,15 @@ export default {
       cep: '',
       cpf: '',
       cnpj: '',
-      cartaoDeCredito: ''
+      cartaoDeCredito: '',
+      placaVeiculo: '',
+      placaVeiculoMercosul: '',
+      rg: '',
+      data: '',
+      dataHoraLocal: '',
+      mes: '',
+      semana: '',
+      hora: ''
     }
   })
 };
