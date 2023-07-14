@@ -109,6 +109,7 @@
               <small class="text-muted">Formato: 0000 0000 0000 0000</small>
             </div>
           </div>
+
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Placa de Veículo:</label>
             <div class="col">
@@ -257,7 +258,7 @@
           <span>RG: {{ form.rg }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Data: {{ form.data }}</span>
+          <span>Data: {{ form.data }} | {{ moment(form.data).format('DD/MM/YYYY') }}</span>
         </div>
         <div class="mb-3 row">
           <span>Data/hora local: {{ form.dataHoraLocal }}</span>
@@ -289,9 +290,12 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'Formulario',
   data: () => ({
+    moment: {},
     form: {
       nome: '',
       email: '',
@@ -314,6 +318,9 @@ export default {
       semana: '',
       hora: ''
     }
-  })
+  }),
+  created() {
+    this.moment = moment; //Ao iniciar o ciclo de vida do vue, carrega o componente
+  }
 };
 </script>
