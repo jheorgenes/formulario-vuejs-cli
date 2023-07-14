@@ -33,11 +33,11 @@
             <label class="col-3 col-form-label">Gênero:</label>
             <div class="col">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" />
+                <input class="form-check-input" type="radio" value="Feminino" v-model="form.genero" />
                 <label class="form-check-label"> Feminino </label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" />
+                <input class="form-check-input" type="radio" value="Masculino" v-model="form.genero" />
                 <label class="form-check-label"> Masculino </label>
               </div>
             </div>
@@ -77,8 +77,36 @@
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Telefone:</label>
             <div class="col">
-              <input type="tel" class="form-control" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}" />
+              <input type="text" class="form-control" v-model="form.telefone" v-maska="'(##) #####-####'" />
               <small class="text-muted">Formato: 11 97777-5555</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">CEP:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.cep" v-maska="'#####-###'" />
+              <small class="text-muted">Formato: 00000-000</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">CPF:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.cpf" v-maska="'###.###.###-##'" />
+              <small class="text-muted">Formato: 000.000.000-00</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">CNPJ:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.cnpj" v-maska="'##.###.###/####-##'" />
+              <small class="text-muted">Formato: 00.000.000/0000-00</small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">Cartão de Crédito:</label>
+            <div class="col">
+              <input type="text" class="form-control" v-model="form.cartaoDeCredito" v-maska="'#### #### #### ####'" />
+              <small class="text-muted">Formato: 0000 0000 0000 0000</small>
             </div>
           </div>
           <div class="mb-3 row">
@@ -172,7 +200,7 @@
           <span>Idade: {{ form.idade }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Gênero:</span>
+          <span>Gênero: {{ form.genero }}</span>
         </div>
         <div class="mb-3 row">
           <span>Licença:{{ form.licenca }}</span>
@@ -184,7 +212,19 @@
           </ul>
         </div>
         <div class="mb-3 row">
-          <span>Telefone:</span>
+          <span>Telefone: {{ form.telefone }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>CEP: {{ form.cep }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>CPF: {{ form.cpf }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>CNPJ: {{ form.cnpj }}</span>
+        </div>
+        <div class="mb-3 row">
+          <span>Cartão de Crédito: {{ form.cartaoDeCredito }}</span>
         </div>
         <div class="mb-3 row">
           <span>Data:</span>
@@ -228,7 +268,13 @@ export default {
       senha: '',
       idade: '',
       licenca: 'SIM',
-      interesses: ['VueJS', 'Angular']
+      interesses: ['VueJS', 'Angular'],
+      genero: 'Feminino',
+      telefone: '',
+      cep: '',
+      cpf: '',
+      cnpj: '',
+      cartaoDeCredito: ''
     }
   })
 };
