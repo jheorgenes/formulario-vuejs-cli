@@ -47,7 +47,7 @@
             <label class="col-3 col-form-label">Licença:</label>
             <div class="col">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" />
+                <input class="form-check-input" type="checkbox" v-model="form.licenca" true-value="SIM" false-value="NÃO" />
                 <label class="form-check-label">Li e aceito os termos</label>
               </div>
             </div>
@@ -57,19 +57,19 @@
             <label class="col-3 col-form-label">Interesses:</label>
             <div class="col">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" />
-                <label class="form-check-label"> JavaScriot </label>
+                <input class="form-check-input" type="checkbox" value="JavaScript" v-model="form.interesses" />
+                <label class="form-check-label"> JavaScript </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" />
+                <input class="form-check-input" type="checkbox" value="VueJS" v-model="form.interesses" />
                 <label class="form-check-label"> VueJS </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" />
+                <input class="form-check-input" type="checkbox" value="Angular" v-model="form.interesses" />
                 <label class="form-check-label"> Angular </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" />
+                <input class="form-check-input" type="checkbox" value="NodeJS" v-model="form.interesses" />
                 <label class="form-check-label"> NodeJS </label>
               </div>
             </div>
@@ -154,61 +154,64 @@
         <span class="fs-4">ESTADO DO OBJETO</span>
         <hr />
         <div class="mb-5 row">
-          <spam>{{ form }}</spam>
+          <span>{{ form }}</span>
         </div>
 
         <span class="fs-4">SAÍDA DE DADOS</span>
         <hr />
         <div class="mb-3 row">
-          <spam>Nome: {{ form.nome }}</spam>
+          <span>Nome: {{ form.nome }}</span>
         </div>
         <div class="mb-3 row">
-          <spam>E-mail: {{ form.email }}</spam>
+          <span>E-mail: {{ form.email }}</span>
         </div>
         <div class="mb-3 row">
-          <spam>Senha: {{ form.senha }}</spam>
+          <span>Senha: {{ form.senha }}</span>
         </div>
         <div class="mb-3 row">
-          <spam>Idade: {{ form.idade }}</spam>
+          <span>Idade: {{ form.idade }}</span>
         </div>
         <div class="mb-3 row">
-          <spam>Gênero:</spam>
+          <span>Gênero:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Licença:</spam>
+          <span>Licença:{{ form.licenca }}</span>
         </div>
         <div class="mb-3 row">
-          <spam>Interesses:</spam>
+          <span>Interesses:</span>
+          <ul>
+            <li v-for="(interesse, index) in form.interesses" :key="index">{{ interesse }}</li>
+          </ul>
         </div>
         <div class="mb-3 row">
-          <spam>Telefone:</spam>
+          <span>Telefone:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Data:</spam>
+          <span>Data:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Data/hora local:</spam>
+          <span>Data/hora local:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Mês:</spam>
+          <span>Mês:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Semana:</spam>
+          <span>Semana:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Hora:</spam>
+          <span>Hora:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Cor:</spam>
+          <span>Cor:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Valor limite:</spam>
+          <span>Valor limite:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Escondido:</spam>
+          <span>Escondido:</span>
         </div>
         <div class="mb-3 row">
-          <spam>Upload:</spam>
+          <span>Upload:</span>
         </div>
       </div>
     </div>
@@ -223,7 +226,9 @@ export default {
       nome: '',
       email: '',
       senha: '',
-      idade: ''
+      idade: '',
+      licenca: 'SIM',
+      interesses: ['VueJS', 'Angular']
     }
   })
 };
