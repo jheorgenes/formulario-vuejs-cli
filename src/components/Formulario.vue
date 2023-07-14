@@ -258,10 +258,21 @@
           <span>RG: {{ form.rg }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Data: {{ form.data }} | {{ moment(form.data).format('DD/MM/YYYY') }}</span>
+          <span>Data: {{ form.data }} | {{ $moment(form.data).format('DD/MM/YYYY') }}</span>
         </div>
         <div class="mb-3 row">
           <span>Data/hora local: {{ form.dataHoraLocal }}</span>
+          <ul>
+            <li> {{ $moment(form.dataHoraLocal).format('dddd') }} </li>
+            <li> {{ $moment(form.dataHoraLocal).add(10, 'days').format('LL') }} </li><!-- Adicionando 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).add(1, 'month').format('LL') }} </li><!-- Adicionando 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).add(2, 'years').format('LL') }} </li><!-- Adicionando 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).subtract(10, 'days').format('LL') }} </li><!-- Subtraindo 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).subtract(1, 'month').format('LL') }} </li><!-- Subtraindo 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).subtract(2, 'years').format('LL') }} </li><!-- Subtraindo 10 dias a partir do dia escolhido -->
+            <li> {{ $moment(form.dataHoraLocal).format('LLLL') }} </li><!-- Mostrando data por extenso -->
+            <li> {{ $moment(form.dataHoraLocal).add(2, 'days').format('LLLL') }} </li><!-- Mostrando data por extenso -->
+          </ul>
         </div>
         <div class="mb-3 row">
           <span>Mês: {{ form.mes }}</span>
@@ -290,12 +301,10 @@
 </template>
 
 <script>
-import moment from 'moment'
 
 export default {
   name: 'Formulario',
   data: () => ({
-    moment: {},
     form: {
       nome: '',
       email: '',
@@ -319,8 +328,5 @@ export default {
       hora: ''
     }
   }),
-  created() {
-    this.moment = moment; //Ao iniciar o ciclo de vida do vue, carrega o componente
-  }
 };
 </script>
