@@ -164,25 +164,31 @@
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Cor:</label>
             <div class="col">
-              <input type="color" class="form-color" />
+              <input type="color" class="form-color" v-model="form.cor" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Valor limite:</label>
             <div class="col">
-              <input type="range" class="form-range" min="0" max="100" step="1" />
+              <input type="range" class="form-range" min="0" max="100" step="1" v-model="form.alcance" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Escondido:</label>
             <div class="col">
-              <input type="hidden" class="form-control" />
+              <input type="hidden" class="form-control" v-model="form.escondido" />
             </div>
           </div>
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Upload:</label>
             <div class="col">
-              <input type="file" class="form-control" />
+              <input type="file" class="form-control" multiple @change="selecionarArquivos($event)" /><!-- @change detecta quando uma mudança foi realizada nesse ponto e dispara um evento $event -->
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">Descrição:</label>
+            <div class="col">
+              <textarea class="form-control" rows="3" v-model="form.descricao"></textarea>
             </div>
           </div>
           <hr />
@@ -200,7 +206,7 @@
         </form>
       </div>
 
-      <div class="col-6 text-white bg-secondary">
+      <div class="col-6 text-white bg-secondary" :style="'background-color:'+form.cor+'!important'">
         <span class="fs-4">ESTADO DO OBJETO</span>
         <hr />
         <div class="mb-5 row">
@@ -284,16 +290,24 @@
           <span>Hora: {{ form.hora }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Cor:</span>
+          <span>Cor: {{ form.cor }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Valor limite:</span>
+          <span>Valor limite: {{ form.alcance }}</span>
         </div>
         <div class="mb-3 row">
-          <span>Escondido:</span>
+          <span>Escondido: {{ form.escondido }}</span>
         </div>
         <div class="mb-3 row">
           <span>Upload:</span>
+          <ul>
+            <li v-for="(arquivo, index) in form.arquivos" :key="index">{{ arquivo.name }}</li><!-- 'arquivo' contém várias informações referente ao files, como nome, tamanho, type, arquivo, etc. -->
+          </ul>
+        </div>
+        <div class="mb-3 row">
+          <span>Descricao:</span>
+          <!-- <pre>{{ form.descricao }}</pre>Dessa forma preserva as quebras de linhas do textarea -->
+          <div style="white-space: pre">{{ form.descricao }}</div><!-- Dessa forma preserva o stilo do texto e apenas acrescenta pré nas quebras de linha -->
         </div>
       </div>
     </div>
@@ -325,8 +339,20 @@ export default {
       dataHoraLocal: '',
       mes: '',
       semana: '',
-      hora: ''
+      hora: '',
+      cor: '#6c757d',
+      alcance: 5,
+      escondido: 'Esse input está escondido',
+      arquivos: {},
+      descricao: ''
     }
   }),
+  methods: {
+    selecionarArquivos(event) {
+      //Ao chamar event.target, estou chamando o input em questão.
+      //Ao chamar event.target.files, estou recuperando o arquivo em questão.
+      this.form.arquivos = event.target.files;
+    }
+  }
 };
 </script>
