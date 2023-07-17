@@ -34,7 +34,9 @@ export default {
       }
 
       // Emitindo um evento chamado avaliar
-      this.$emit('avaliar', this.avaliacao);
+      // this.$emit('avaliar', this.avaliacao);
+
+      this.$emit('update:avaliar', this.avaliacao);
     }
   }
 }

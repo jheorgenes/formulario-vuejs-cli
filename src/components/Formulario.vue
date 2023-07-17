@@ -204,7 +204,10 @@
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Avaliação:</label>
             <div class="col">
-              <input-estrelas :numero-estrelas="5" @avaliar="form.avaliacao = $event" /><!-- Ouvindo o evento disparado de inputEstrelas e armazenando em form.avaliacao -->
+              <!-- Componente abaixo dispara um evento chamado avaliar ao ser clicado. Esse componente Formulario ouve esse disparado e armazena o resultado em form.avaliacao -->
+              <!-- <input-estrelas :numero-estrelas="5" @avaliar="form.avaliacao = $event" /> -->
+              <!-- Componente abaixo dispara um evento chamado "update:avaliar" ao ser clicado. Esse componente Formulario ouve o disparo da atualização (indicado pelo nome avaliar) e armazena em form.avaliacao o resultado (usando o v-model igual os outros inputs) -->
+              <input-estrelas :numero-estrelas="5" v-model:avaliar="form.avaliacao" />
             </div>
           </div>
           <hr />
