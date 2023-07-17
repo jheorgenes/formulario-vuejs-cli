@@ -4,7 +4,8 @@
       <div class="col-6 bg-light">
         <span class="fs-4">ENTRADA DE DADOS</span>
         <hr />
-        <form>
+        <!-- <form @submit.prevent="enviar($event)"> -->
+        <form @reset.prevent="resetar()">
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Nome:</label>
             <div class="col">
@@ -203,8 +204,10 @@
           <hr />
           <div class="mb-3 row">
             <div class="col d-flex justify-content-between">
-              <button class="btn btn-secondary" type="reset">Limpar</button>
-              <button class="btn btn-success" type="button">
+              <button class="btn btn-secondary" type="reset">
+                Limpar (reset)
+              </button>
+              <button class="btn btn-success" type="button" @click="enviar($event)">
                 Enviar (btn)
               </button>
               <button class="btn btn-success" type="submit">
@@ -337,11 +340,12 @@ export default {
       { id: 3, curso: 'Desenvolvimento Web Acançado com Laravel' },
       { id: 4, curso: 'Curso Completo do Desenvolvedor NodeJS e MongoDB' },
     ],
-    form: {
-      nome: '',
-      email: '',
-      senha: '',
-      idade: '',
+    form: {},
+    formEstadoInicial: {
+      nome: 'Jheorgenes Warlley Dias da Silva',
+      email: 'jheorgenes@gmail.com',
+      senha: '123456789',
+      idade: '29',
       licenca: 'SIM',
       interesses: ['VueJS', 'Angular'],
       genero: 'Feminino',
@@ -366,11 +370,23 @@ export default {
       curso: ''
     }
   }),
+  created() {
+    this.resetar();
+  },
   methods: {
     selecionarArquivos(event) {
       //Ao chamar event.target, estou chamando o input em questão.
       //Ao chamar event.target.files, estou recuperando o arquivo em questão.
       this.form.arquivos = event.target.files;
+    },
+    enviar(e){
+      console.log(e);
+      const formEnvio = Object.assign({}, this.form); //Fazendo uma cópia do objeto original para um objeto puro (sem aqueles recursos embutidos do browser);
+      console.log(formEnvio);
+    },
+    resetar() {
+      this.form = Object.assign({}, this.formEstadoInicial);
+      console.log(this.form);
     }
   }
 };
