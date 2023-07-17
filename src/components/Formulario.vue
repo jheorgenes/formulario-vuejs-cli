@@ -4,8 +4,8 @@
       <div class="col-6 bg-light">
         <span class="fs-4">ENTRADA DE DADOS</span>
         <hr />
-        <!-- <form @submit.prevent="enviar($event)"> -->
-        <form @reset.prevent="resetar()">
+        <form @submit.prevent="enviar($event)">
+        <!-- <form @reset.prevent="resetar()"> -->
           <div class="mb-3 row">
             <label class="col-3 col-form-label">Nome:</label>
             <div class="col">
@@ -201,6 +201,12 @@
               </select>
             </div>
           </div>
+          <div class="mb-3 row">
+            <label class="col-3 col-form-label">Avaliação:</label>
+            <div class="col">
+              <input-estrelas :numero-estrelas="5" @avaliar="form.avaliacao = $event" /><!-- Ouvindo o evento disparado de inputEstrelas e armazenando em form.avaliacao -->
+            </div>
+          </div>
           <hr />
           <div class="mb-3 row">
             <div class="col d-flex justify-content-between">
@@ -324,15 +330,22 @@
         <div class="mb-3 row">
           <span>Curso: {{ form.curso }}</span>
         </div>
+        <div class="mb-3 row">
+          <span>Avaliação: {{ form.avaliacao }}</span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import InputEstrelas from '@/components/InputEstrelas.vue';
 
 export default {
   name: 'Formulario',
+  components: {
+    InputEstrelas
+  },
   data: () => ({
     cursos: [
       { id: 1, curso: 'Banco de dados Relacionais' },
@@ -367,7 +380,8 @@ export default {
       escondido: 'Esse input está escondido',
       arquivos: {},
       descricao: '',
-      curso: ''
+      curso: '',
+      avaliacao: 0
     }
   }),
   created() {
@@ -381,8 +395,8 @@ export default {
     },
     enviar(e){
       console.log(e);
-      const formEnvio = Object.assign({}, this.form); //Fazendo uma cópia do objeto original para um objeto puro (sem aqueles recursos embutidos do browser);
-      console.log(formEnvio);
+    //   const formEnvio = Object.assign({}, this.form); //Fazendo uma cópia do objeto original para um objeto puro (sem aqueles recursos embutidos do browser);
+    //   console.log(formEnvio);
     },
     resetar() {
       this.form = Object.assign({}, this.formEstadoInicial);
